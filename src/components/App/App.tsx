@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { AppProps } from './App.types';
 import { Canvas } from '../Canvas';
 import { StyledApp } from './App.styles';
 import { ColorForm } from '../ColorForm';
@@ -29,9 +28,7 @@ const drawGradient = (ctx: CanvasRenderingContext2D, points: Point[], colors: nu
   for (let x = minX; x < maxX; x++) {
     for (let y = minY; y < maxY; y++) {
       if (ctx.isPointInPath(x, y)) {
-        const color = getPointColor({ x, y }, params);
-
-        ctx.fillStyle = color;
+        ctx.fillStyle = getPointColor({ x, y }, params);
         ctx.fillRect(x, y, 1, 1);
       }
     }
@@ -40,7 +37,7 @@ const drawGradient = (ctx: CanvasRenderingContext2D, points: Point[], colors: nu
   ctx.stroke();
 };
 
-export const App: React.FC<AppProps> = () => {
+export const App: React.FC = () => {
   const [colors, setColors] = useState<number[][]>([[234, 99, 99], [137, 246, 13], [53, 112, 229]]);
 
   const handleColorsSubmit = (colors: ColorFormInputs) => {
